@@ -10,34 +10,28 @@ format:
 - Have basic access to the labs via GitHub classroom.
 - Perform exploratory data analysis of some sample datasets.
 
-
 ## Quarto and GitHub Classroom
 
-Most of the labs will be broken down into multiple tasks for you to complete.
-We will extensively use **GitHub Classroom** to complete the labs.
-We will talk about `git` and GitHub until Week 3, but for now you need to at least know how to get access to the lab files, so there are two commands you'll need to know.
+Most of the labs will be broken down into multiple tasks for you to complete. We will extensively use **GitHub Classroom** to complete the labs. We will talk about `git` and GitHub until Week 3, but for now you need to at least know how to get access to the lab files, so there are two commands you'll need to know.
 
-Most of the code we write will be in `quarto`.
-Quarto is a superset of `markdown`, that allows us to write documents made purely of plain text, and **compile** or **knit** them into formatted output, such as HTML or PDF.
-Importantly, we can **embed `R` code** in `quarto` documents, have `quarto` run the code and embed the output of the code into the report.
-This is important for reproducibility; the document we write contains all the documentation needed to explain the problem, the code to produce outputs and the interpretation of the outputs, in one place.
+Most of the code we write will be in `quarto`. Quarto is a superset of `markdown`, that allows us to write documents made purely of plain text, and **compile** or **knit** them into formatted output, such as HTML or PDF. Importantly, we can **embed `R` code** in `quarto` documents, have `quarto` run the code and embed the output of the code into the report. This is important for reproducibility; the document we write contains all the documentation needed to explain the problem, the code to produce outputs and the interpretation of the outputs, in one place.
 
 ### Task 1
 
-::: {.callout-tip}
+::: callout-tip
 The labs will contain some tasks for you to complete yourself. These will be checklists, as below.
 
-Sometimes there will be areas for you to edit. These will have _marked_ text that [looks like this]{.mark}.
+Sometimes there will be areas for you to edit. These will have *marked* text that [looks like this]{.mark}.
 :::
 
 - [x] Check items off as you complete them.
-- [ ] Create your personal student repository by following the instructions at the link above.
-- [ ] Clone the repository, containing this file, to your local machine.
-- [ ] Open these instructions in Visual Studio Code or RStudio.
-- [ ] Fill out your name in the box below.
+- [x] Create your personal student repository by following the instructions at the link above.
+- [x] Clone the repository, containing this file, to your local machine.
+- [x] Open these instructions in Visual Studio Code or RStudio.
+- [x] Fill out your name in the box below.
 
-::: {.callout-note}
-Hi, my name is [_fill out your name here_]{.mark}.
+::: callout-note
+Cristopher Magsombol
 :::
 
 - [ ] Knit the document to check that the output looks okay.
@@ -46,9 +40,7 @@ Hi, my name is [_fill out your name here_]{.mark}.
 
 ## Palmer Penguins in `R`
 
-We will be using the Palmer Penguins dataset, a dataset that is an alternative to the classic Iris dataset.
-It contains real observations of three penguin species - Adélie, Chinstrap and Gentoo - collected from the Palmer Station in Antarctica by researchers studying penguin ecology.
-The dataset includes:
+We will be using the Palmer Penguins dataset, a dataset that is an alternative to the classic Iris dataset. It contains real observations of three penguin species - Adélie, Chinstrap and Gentoo - collected from the Palmer Station in Antarctica by researchers studying penguin ecology. The dataset includes:
 
 - Biological measurements (e.g. flipper length, body mass, bill depth)
 - Metadata (species, island, sex, year)
@@ -57,11 +49,8 @@ This dataset was curated and made accessible by Allison Horst and collaborators,
 
 The next code block loads and processes the dataset, stored in `penguins.csv` in the repository.
 
-::: {.callout-tip}
-If you look at the `.qmd` file in RStudio or VS Code, you will see the code appears surrounded by some backtick characters (\`).
-These tell `quarto` that what is contained between the backticks is code.
-The text after the backticks (`{r}`) tells us that this is `R` code.
-When `quarto` compiles this document to HTML or PDF, the code is run, and the output is placed into the document.
+::: callout-tip
+If you look at the `.qmd` file in RStudio or VS Code, you will see the code appears surrounded by some backtick characters (\`). These tell `quarto` that what is contained between the backticks is code. The text after the backticks (`{r}`) tells us that this is `R` code. When `quarto` compiles this document to HTML or PDF, the code is run, and the output is placed into the document.
 :::
 
 ```{r}
@@ -78,15 +67,14 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
 
 The code above is **not very well written**; it doesn't explain what is happening on each line. This is bad for reproducibility. Another scientist reading your code might not understand what is happening!
 
-To improve this we can add *comments* to the code.
-Comments are basically text that is ignored by the language, so that we can annotate it to explain it to other readers.
+To improve this we can add *comments* to the code. Comments are basically text that is ignored by the language, so that we can annotate it to explain it to other readers.
 
 ```{r}
 # This is what a comment in R looks like
 print("Hello world!")  # We can also add comments at the end of lines.
 ```
 
-### Task 2 
+### Task 2
 
 - [ ] Add comments before each line of code in the blocks above, explaining what is happening on each line.
 - [ ] Add some interpretation of the plot (in `markdown`, not as comments), after the code block.

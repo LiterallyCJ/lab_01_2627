@@ -34,9 +34,9 @@ Sometimes there will be areas for you to edit. These will have *marked* text tha
 Cristopher Magsombol
 :::
 
-- [ ] Knit the document to check that the output looks okay.
-- [ ] Save, and push the output back up to GitHub. (Hint: see the instructions [here](https://soton-fds.github.io/github-tutorial.html))
-- [ ] Check that you can see the modified version in your personal GitHub repo.
+- [x] Knit the document to check that the output looks okay.
+- [x] Save, and push the output back up to GitHub. (Hint: see the instructions [here](https://soton-fds.github.io/github-tutorial.html))
+- [x] Check that you can see the modified version in your personal GitHub repo.
 
 ## Palmer Penguins in `R`
 
@@ -76,9 +76,35 @@ print("Hello world!")  # We can also add comments at the end of lines.
 
 ### Task 2
 
-- [ ] Add comments before each line of code in the blocks above, explaining what is happening on each line.
-- [ ] Add some interpretation of the plot (in `markdown`, not as comments), after the code block.
+- [x] Add comments before each line of code in the blocks above, explaining what is happening on each line.
+- [x] Add some interpretation of the plot (in `markdown`, not as comments), after the code block.
 - [ ] Create a second plot, below, that colours the dots by sex instead of by species.
+
+```{r}
+# Import the tidyverse package
+library(tidyverse)
+
+# Import the penguins dataset and save it as the variable penguins
+penguins <- read_csv("data/penguins.csv")
+
+# Display the first few rows of the penguins dataset
+head(penguins)
+
+# Display a summary of the penguins dataset
+summary(penguins)
+
+# Create a scatter plot of flipper length vs body mass, colored by species
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  theme_minimal()
+
+# Create a scatter plot of flipper length vs body mass, colored by sex
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = sex)) +
+  geom_point() +
+  theme_minimal()
+```
+
+The first graph shows that flipper length and body mass have a positive correlation.
 
 If you don't know how to do something in `R` you have a few options:
 

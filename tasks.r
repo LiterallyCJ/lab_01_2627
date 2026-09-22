@@ -19,3 +19,8 @@ ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = sex)) +
   geom_point() +
   theme_minimal()
+
+# Create a scatter plot of flipper length vs body mass, colored by species and shape depending on sex
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = sex)) +
+  geom_point() +
+  theme_minimal()

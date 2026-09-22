@@ -78,7 +78,7 @@ print("Hello world!")  # We can also add comments at the end of lines.
 
 - [x] Add comments before each line of code in the blocks above, explaining what is happening on each line.
 - [x] Add some interpretation of the plot (in `markdown`, not as comments), after the code block.
-- [ ] Create a second plot, below, that colours the dots by sex instead of by species.
+- [x] Create a second plot, below, that colours the dots by sex instead of by species.
 
 ```{r}
 # Import the tidyverse package
@@ -114,9 +114,40 @@ If you don't know how to do something in `R` you have a few options:
 
 The next task asks you to *extend* what we have already done using new functionality of `ggplot`.
 
-- [ ] Create a third plot that uses colour for species and changes the *shape* of the points based on the sex.
-- [ ] Commit and push your solutions to GitHub with an informative message.
-- [ ] Make sure your changes are visible on GitHub.
+- [x] Create a third plot that uses colour for species and changes the *shape* of the points based on the sex.
+
+```{r}
+# Import the tidyverse package
+library(tidyverse)
+
+# Import the penguins dataset and save it as the variable penguins
+penguins <- read_csv("data/penguins.csv")
+
+# Display the first few rows of the penguins dataset
+head(penguins)
+
+# Display a summary of the penguins dataset
+summary(penguins)
+
+# Create a scatter plot of flipper length vs body mass, colored by species
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+  geom_point() +
+  theme_minimal()
+
+# Create a scatter plot of flipper length vs body mass, colored by sex
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = sex)) +
+  geom_point() +
+  theme_minimal()
+
+# Create a scatter plot of flipper length vs body mass, colored by species and shape depending on sex
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = sex)) +
+  geom_point() +
+  theme_minimal()
+
+```
+
+- [x] Commit and push your solutions to GitHub with an informative message.
+- [x] Make sure your changes are visible on GitHub.
 
 From now on I won't remind you to do this - you should get into the habit of doing it whenever you reach a natural point to commit!
 

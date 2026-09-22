@@ -120,25 +120,6 @@ The next task asks you to *extend* what we have already done using new functiona
 # Import the tidyverse package
 library(tidyverse)
 
-# Import the penguins dataset and save it as the variable penguins
-penguins <- read_csv("data/penguins.csv")
-
-# Display the first few rows of the penguins dataset
-head(penguins)
-
-# Display a summary of the penguins dataset
-summary(penguins)
-
-# Create a scatter plot of flipper length vs body mass, colored by species
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point() +
-  theme_minimal()
-
-# Create a scatter plot of flipper length vs body mass, colored by sex
-ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = sex)) +
-  geom_point() +
-  theme_minimal()
-
 # Create a scatter plot of flipper length vs body mass, colored by species and shape depending on sex
 ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = sex)) +
   geom_point() +
@@ -155,6 +136,63 @@ From now on I won't remind you to do this - you should get into the habit of doi
 
 Produce plots to answer the following research questions:
 
-- [ ] On which island are we most likely to find which penguins?
-- [ ] What is the most useful measurement or measurements to distinguish different species of penguin?
-- [ ] Do the measurements given vary significantly with the penguin's genders?
+- [x] On which island are we most likely to find which penguins?
+
+```{r}
+# Compare species proportions across islands
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(position = "fill") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    x = "Island",
+    y = "Proportion of penguins",
+    fill = "Species",
+    title = "Penguin species by island"
+  ) +
+  theme_minimal()
+```
+
+- [x] What is the most useful measurement or measurements to distinguish different species of penguin?
+
+```{r}
+# Reshape the measurement columns so they can be plotted in facets
+penguin_measurements <- penguins |>
+  pivot_longer(
+    cols = c(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g),
+    names_to = "measurement",
+    values_to = "value"
+  )
+
+# Compare each measurement across penguin species
+ggplot(penguin_measurements, aes(x = species, y = value, fill = species)) +
+  geom_boxplot(na.rm = TRUE) +
+  facet_wrap(~measurement, scales = "free_y") +
+  labs(
+    x = "Species",
+    y = "Measurement value",
+    fill = "Species",
+    title = "Penguin measurements by species"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+- [x] Do the measurements given vary significantly with the penguin's genders?
+
+```{r}
+# Compare measurements between sexes within each species
+ggplot(
+  filter(penguin_measurements, !is.na(sex)),
+  aes(x = sex, y = value, fill = sex)
+) +
+  geom_boxplot(na.rm = TRUE) +
+  facet_grid(measurement ~ species, scales = "free_y") +
+  labs(
+    x = "Sex",
+    y = "Measurement value",
+    fill = "Sex",
+    title = "Penguin measurements by sex and species"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
